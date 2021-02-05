@@ -1,39 +1,28 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { Component } from 'react';
+import VideosGrid from '../../components/VideosGrid/VideosGrid.component';
+import { getVideos } from '../../services/getVideos';
+// import {  } from "module";
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+export default class Home extends Component {
+    state = {
+        videos: [],
+        loading: true,
+    };
 
-function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+    async componentDidMount() {
+        // this.state = { loading: true };
+        const videos = await getVideos();
+        this.setState({ videos, loading: false });
+        console.log(videos);
+    }
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
-
-  return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
-    </section>
-  );
+    render() {
+        const { videos, loading } = this.state;
+        return (
+            <div>
+                <h1>Test</h1>
+                {!loading && <VideosGrid videos={videos} />}
+            </div>
+        );
+    }
 }
-
-export default HomePage;
