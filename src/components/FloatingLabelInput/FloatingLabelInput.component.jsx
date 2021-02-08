@@ -5,13 +5,21 @@ export default class FloatingLabelInput extends Component {
         name: this.props.name,
         type: this.props.type,
         children: this.props.children,
+        value: this.props.value,
         active: false,
     };
+
+    componentDidMount() {
+        if (this.state.value !== '' && this.state.value) {
+            this.setState({ active: true });
+        }
+    }
+
     handleActivation = (e) => {
-        this.setState({ active: !!e.target.value });
+        this.setState({ active: !!e.target.value, value: e.target.value });
     };
     render() {
-        const { name, type, children, active } = this.state;
+        const { name, type, children, value, active } = this.state;
         return (
             <div className="relative mb-2 bg-transparent">
                 <input
@@ -22,7 +30,11 @@ export default class FloatingLabelInput extends Component {
                     id={name}
                     name={name}
                     type={type}
-                    onChange={this.handleActivation}
+                    value={value}
+                    onChange={(event) => {
+                        this.props.handleChange(event);
+                        this.handleActivation(event);
+                    }}
                 />
                 <label
                     className={[

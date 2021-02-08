@@ -37,7 +37,7 @@ class Navbar extends Component {
         this.toggleDropdown();
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.navigationDrawerToggle(false);
         this.props.loginModalToggle(false);
         this.setHTMLMode();
