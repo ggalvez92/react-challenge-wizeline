@@ -23,13 +23,13 @@ function App() {
                 <NavigationMenu />
                 <Layout>
                     <Switch>
-                        <Route exact path="/">
+                        <Route path="/">
                             <HomePage />
                         </Route>
-                        <Route exact path="/video-detail/:id">
+                        <Route path="/video-detail/:id">
                             <VideoDetail />
                         </Route>
-                        <Route exact path="/favorite-videos">
+                        <Route path="/favorite-videos">
                             <FavoriteVideosPage />
                         </Route>
                     </Switch>
