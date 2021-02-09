@@ -18,7 +18,7 @@ import '../../global.css';
 function App() {
     return (
         <Provider store={store}>
-            <BrowserRouter>
+            <BrowserRouter basename={'react-challenge-wizeline'}>
                 <Navbar />
                 <NavigationMenu />
                 <Layout>
