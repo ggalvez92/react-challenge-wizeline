@@ -1,14 +1,17 @@
 import createUrlParams from './createUrlParams';
 import axios from 'axios';
 
-export const getVideos = async (category) => {
+export const getVideos = async (searchText) => {
+    return [];
+    if (!searchText || searchText === '') return [];
+
     const params = {
-        q: 'wizeline',
+        q: searchText,
         part: 'snippet',
         maxResults: 25,
         key: process.env.REACT_APP_GOOGLE_API_KEY,
     };
-    // return [];
+
     const url = 'https://content-youtube.googleapis.com/youtube/v3/search';
     const urlWithParams = createUrlParams(url, params);
     const { data: responseData } = await axios.get(urlWithParams);

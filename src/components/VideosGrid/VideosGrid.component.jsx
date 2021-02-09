@@ -15,18 +15,14 @@ export default class VideosGrid extends Component {
 
     getClassesContainer() {
         if (this.props.listType === 'full') {
-            return 'videos-container grid grid-cols-5 gap-4 px-10 py-6';
+            return 'videos-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 px-10 py-6';
         } else {
             return 'videos-container grid grid-cols-1 px-3 py-2 divide-y divide-gray';
         }
     }
 
-    componentDidMount() {
-        // console.log(this.props);
-    }
-
     render() {
-        const { videos } = this.state;
+        const { videos } = this.props;
         return (
             <div className={this.getClassesContainer()}>
                 {videos.map((item, index) => {

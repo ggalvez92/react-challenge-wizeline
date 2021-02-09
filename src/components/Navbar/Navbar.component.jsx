@@ -6,9 +6,14 @@ import {
     loginModalToggle,
 } from '../../redux/actions/template';
 import { logout } from '../../redux/actions/auth';
+import { searchVideosTextTrigger } from '../../redux/actions/video';
 import './Navbar.styles.css';
 
 class Navbar extends Component {
+    state = {
+        searchVideosText: this.props.video.searchVideosText || '',
+    };
+
     setHTMLMode() {
         const htmlElement = document.getElementsByTagName('html')[0];
         if (this.props.template.darkModeToggle) {
@@ -17,6 +22,20 @@ class Navbar extends Component {
             htmlElement.classList.remove('dark');
         }
     }
+
+    emitInputSearchText = (currentSearchString) => {
+        this.setState({ searchVideosText: currentSearchString });
+        this.props.searchVideosTextTrigger(currentSearchString);
+    };
+
+    handleInputSearch = (event) => {
+        this.setState({ searchVideosText: event.target.value });
+    };
+
+    handleKeyDownInputSearch = (event) => {
+        if (event.key !== 'Enter') return;
+        this.props.searchVideosTextTrigger(this.state.searchVideosText);
+    };
 
     handleDarkModeToggle = async () => {
         await this.props.darkModeToggle(!this.props.template.darkModeToggle);
@@ -47,15 +66,23 @@ class Navbar extends Component {
         this.props.navigationDrawerToggle(false);
         this.props.loginModalToggle(false);
         this.setHTMLMode();
+
+        if (
+            this.state.searchVideosText === '' ||
+            this.state.searchVideosText === undefined
+        ) {
+            this.emitInputSearchText('wizeline');
+        }
     }
 
     render() {
         const { darkModeToggle: darkModeToggleValue } = this.props.template;
         const { auth } = this.props;
+        const { searchVideosText } = this.state;
         return (
             <nav className="navbar-container dark:bg-indigo-600">
                 <div className="max-w-10xl mx-auto px-2 sm:px-6 lg:px-8">
-                    <div className="relative flex items-center justify-between h-16">
+                    <div className="relative flex flex-wrap	 items-center justify-between min-h-16 py-3 md:-py-0">
                         <div className="flex items-center">
                             <button
                                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -73,7 +100,7 @@ class Navbar extends Component {
                                 </svg>
                             </button>
                         </div>
-                        <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                        <div className="flex-1 md:flex-none flex items-center justify-center sm:items-stretch sm:justify-start mb-3 md:mb-0">
                             <div className="flex-shrink-0 flex items-center">
                                 <svg
                                     className="mx-4"
@@ -94,13 +121,18 @@ class Navbar extends Component {
                                     </g>
                                 </svg>
                             </div>
+                        </div>
+                        <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                             <div className="search-bar-container">
                                 <div className="relative mx-auto text-gray-600">
                                     <input
-                                        className="border-transparent h-10 px-5 pl-10 rounded-md text-sm focus:outline-none bg-transparent placeholder-white"
+                                        className="border-transparent h-10 px-5 pl-10 rounded-md text-sm focus:outline-none bg-transparent placeholder-white text-white"
                                         type="search"
                                         name="search"
                                         placeholder="Search"
+                                        value={searchVideosText}
+                                        onChange={this.handleInputSearch}
+                                        onKeyDown={this.handleKeyDownInputSearch}
                                     />
                                     <div className="icon-container absolute left-0 inset-y-2/4 transform translate-x-2/4 -translate-y-2/4 h-4 w-4">
                                         <svg
@@ -125,7 +157,7 @@ class Navbar extends Component {
                             </div>
                         </div>
                         <div
-                            className="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 cursor-pointer"
+                            className="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 cursor-pointer ml-3 md:ml-0"
                             onClick={this.handleDarkModeToggle}
                         >
                             <div className="switch-container">
@@ -144,7 +176,7 @@ class Navbar extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="ml-6 relative">
+                        <div className="ml-3 md:ml-6 relative">
                             <div>
                                 <button
                                     className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -197,6 +229,7 @@ function mapStateToProps(state, ownProps) {
     return {
         template: state.template,
         auth: state.auth,
+        video: state.video,
     };
 }
 
@@ -209,6 +242,8 @@ function mapDispatchToProps(dispatch) {
         loginModalToggle: (loginModalToggleValue) =>
             dispatch(loginModalToggle(loginModalToggleValue)),
         logout: () => dispatch(logout()),
+        searchVideosTextTrigger: (searchVideosText) =>
+            dispatch(searchVideosTextTrigger(searchVideosText)),
     };
 }
 

@@ -1,12 +1,18 @@
 import { types } from '../types/types';
 
 const initialState = {
-    videoSelected: undefined,
+    searchVideosText: '',
+    videoSelected: null,
     favoriteVideos: [],
 };
 
 export const videoReducer = (state = initialState, action) => {
     switch (action.type) {
+        case types.searchVideos:
+            return {
+                ...state,
+                searchVideosText: action.payload.searchVideosText,
+            };
         case types.videoSelected:
             return {
                 ...state,
