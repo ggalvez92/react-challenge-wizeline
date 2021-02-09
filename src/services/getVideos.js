@@ -2,7 +2,6 @@ import createUrlParams from './createUrlParams';
 import axios from 'axios';
 
 export const getVideos = async (searchText) => {
-    return [];
     if (!searchText || searchText === '') return [];
 
     const params = {
