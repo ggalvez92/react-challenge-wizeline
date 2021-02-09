@@ -23,14 +23,9 @@ function App() {
                 <NavigationMenu />
                 <Layout>
                     <Switch>
-                        <Route path="/" component={HomePage}></Route>
+                        <Route exact path="/" component={HomePage}></Route>
+                        <Route path="/video-detail/:id" component={VideoDetail}></Route>
                         <Route
-                            exact
-                            path="/video-detail/:id"
-                            component={VideoDetail}
-                        ></Route>
-                        <Route
-                            exact
                             path="/favorite-videos"
                             component={FavoriteVideosPage}
                         ></Route>
