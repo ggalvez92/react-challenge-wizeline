@@ -23,15 +23,17 @@ function App() {
                 <NavigationMenu />
                 <Layout>
                     <Switch>
-                        <Route path="/">
-                            <HomePage />
-                        </Route>
-                        <Route exact path="/video-detail/:id">
-                            <VideoDetail />
-                        </Route>
-                        <Route exact path="/favorite-videos">
-                            <FavoriteVideosPage />
-                        </Route>
+                        <Route path="/" component={HomePage}></Route>
+                        <Route
+                            exact
+                            path="/video-detail/:id"
+                            component={VideoDetail}
+                        ></Route>
+                        <Route
+                            exact
+                            path="/favorite-videos"
+                            component={FavoriteVideosPage}
+                        ></Route>
                     </Switch>
                 </Layout>
             </BrowserRouter>
