@@ -20,10 +20,10 @@ class NavigationMenu extends Component {
                     (!navigationDrawerToggle ? '-translate-x-full' : 'translate-x-0')
                 }
             >
-                <div className="navigation-drawer w-64 absolute bg-gray-700 top-0 h-screen">
+                <div className="navigation-drawer w-64 absolute bg-white dark:bg-gray-800 top-0 h-screen">
                     <div className="flex pr-2 justify-end pt-3">
                         <button
-                            className="p-1 text-white text-xl font-bold leading-4"
+                            className="p-1 text-black dark:text-white text-xl font-bold leading-4"
                             onClick={this.handleNavigationDrawerToggle}
                         >
                             &times;
@@ -31,14 +31,14 @@ class NavigationMenu extends Component {
                     </div>
                     <Link
                         to="/"
-                        className="text-xl text-center pt-5 text-white w-full block"
+                        className="text-xl text-center pt-5 text-black dark:text-white w-full block"
                     >
                         Home
                     </Link>
                     {auth.id ? (
                         <Link
                             to="/favorite-videos"
-                            className="text-xl text-center pt-5 text-white w-full block"
+                            className="text-xl text-center pt-5 text-black dark:text-white w-full block"
                         >
                             Favorites
                         </Link>

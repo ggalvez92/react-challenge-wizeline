@@ -39,8 +39,6 @@ class Navbar extends Component {
     };
 
     handleLogout = () => {
-        // this.props.loginModalToggle(!this.props.template.loginModalToggle);
-        // this.toggleDropdown();
         this.props.logout();
         this.toggleDropdown();
     };

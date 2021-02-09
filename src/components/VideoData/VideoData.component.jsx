@@ -39,7 +39,7 @@ class VideoData extends Component {
                 <div className="information">
                     <div className="title mb-3 relative pr-6">
                         <span
-                            className="leading-5 text-3xl"
+                            className="leading-5 text-3xl text-black dark:text-white"
                             dangerouslySetInnerHTML={{
                                 __html: video.videoSelected?.snippet?.title,
                             }}

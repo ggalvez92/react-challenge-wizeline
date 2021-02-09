@@ -31,8 +31,8 @@ class VideoDetail extends Component {
     render() {
         const { videos, videoSelected, loading } = this.state;
         return (
-            <div className="video-detail-page-container">
-                <div className="video-detail-data grid grid-cols-10 ">
+            <div className="video-detail-page-container bg-white dark:bg-gray-800">
+                <div className="video-detail-data grid grid-cols-10">
                     <div className="video-detail col-span-10 md:col-span-6 lg:col-span-7">
                         <VideoData video={videoSelected} />
                     </div>

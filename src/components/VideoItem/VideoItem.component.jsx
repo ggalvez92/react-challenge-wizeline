@@ -17,9 +17,9 @@ class VideoItem extends Component {
         switch (divType) {
             case 'card-container':
                 if (this.props.listType === 'full')
-                    return 'card-video bg-white shadow-lg hover:shadow-xl cursor-pointer rounded-md pb-4';
+                    return 'card-video bg-white dark:bg-gray-600 shadow-lg hover:shadow-xl cursor-pointer rounded-md pb-4';
                 else
-                    return 'card-video bg-transparent hover:bg-gray-300 cursor-pointer flex py-2 px-2';
+                    return 'card-video bg-transparent dark:bg-gray-800 hover:bg-gray-300 cursor-pointer flex py-2 px-2';
             case 'figure-thumbnail':
                 if (this.props.listType === 'full')
                     return 'thumbnail-container h-140 w-100';
@@ -56,7 +56,7 @@ class VideoItem extends Component {
                     <div className="card-information px-4 py-4 flex-grow-0 flex-shrink flex-basis-100">
                         <div className="title mb-3">
                             <span
-                                className="leading-5 text-lg"
+                                className="leading-5 text-lg text-black dark:text-white"
                                 dangerouslySetInnerHTML={{ __html: video.snippet.title }}
                             ></span>
                         </div>
