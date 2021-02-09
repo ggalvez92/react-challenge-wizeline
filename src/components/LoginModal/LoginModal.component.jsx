@@ -20,17 +20,17 @@ class LoginModal extends Component {
                         &#8203;
                     </span>
                     <div
-                        className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full"
+                        className="inline-block align-bottom bg-white dark:bg-gray-500 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full"
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="modal-headline"
                     >
-                        <div className="modal-data bg-white">
+                        <div className="modal-data bg-white dark:bg-gray-500">
                             <div className="modal-title px-4 pb-2 pt-3">
                                 <div className="sm:flex sm:items-start">
                                     <div className="mt-3 text-center sm:mt-0 sm:ml-2 sm:text-left">
                                         <h3
-                                            className="text-lg leading-6 font-medium text-gray-900"
+                                            className="text-lg leading-6 font-medium text-gray-900 dark:text-white"
                                             id="modal-headline"
                                         >
                                             Login

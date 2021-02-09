@@ -24,8 +24,8 @@ export default class FloatingLabelInput extends Component {
             <div className="relative mb-2 bg-transparent">
                 <input
                     className={[
-                        'w-full bg-transparent border border-t-0 border-r-0 border-l-0 border-black rounded-none outline-none  text-sm transition-all duration-200 ease-in-out p-2',
-                        active ? 'pt-6 border-blue-500' : '',
+                        'w-full bg-transparent border border-t-0 border-r-0 border-l-0 border-black rounded-none outline-none  text-sm transition-all duration-200 ease-in-out p-2 text-black dark:text-white',
+                        active ? 'pt-6 border-blue-500 dark:border-white' : '',
                     ].join(' ')}
                     id={name}
                     name={name}
@@ -39,7 +39,7 @@ export default class FloatingLabelInput extends Component {
                 <label
                     className={[
                         'absolute top-0 left-0 flex items-center text-gray-500 text-opacity-50 p-2 transition-all duration-200 ease-in-out',
-                        active ? 'text-xs text-blue-500' : 'text-sm',
+                        active ? 'text-xs text-blue-500 dark:text-white' : 'text-sm',
                     ].join(' ')}
                     htmlFor={name}
                 >
