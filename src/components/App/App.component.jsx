@@ -26,10 +26,10 @@ function App() {
                         <Route path="/">
                             <HomePage />
                         </Route>
-                        <Route path="/video-detail/:id">
+                        <Route exact path="/video-detail/:id">
                             <VideoDetail />
                         </Route>
-                        <Route path="/favorite-videos">
+                        <Route exact path="/favorite-videos">
                             <FavoriteVideosPage />
                         </Route>
                     </Switch>
