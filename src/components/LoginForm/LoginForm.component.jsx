@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginAsync } from '../../redux/actions/auth';
+import { loginModalToggle } from '../../redux/actions/template';
 import FloatingLabelInput from '../FloatingLabelInput';
 
 class LoginForm extends Component {
@@ -33,6 +34,7 @@ class LoginForm extends Component {
 
         await this.props.login(1, email);
         this.setState({ canSubmit: true });
+        this.props.loginModalToggle(false);
     };
 
     render() {
@@ -86,6 +88,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         login: (id, email) => dispatch(loginAsync(id, email)),
+        loginModalToggle: (loginModalToggleValue) =>
+            dispatch(loginModalToggle(loginModalToggleValue)),
     };
 }
 

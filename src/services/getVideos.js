@@ -8,7 +8,7 @@ export const getVideos = async (category) => {
         maxResults: 25,
         key: process.env.REACT_APP_GOOGLE_API_KEY,
     };
-    return [];
+    // return [];
     const url = 'https://content-youtube.googleapis.com/youtube/v3/search';
     const urlWithParams = createUrlParams(url, params);
     const { data: responseData } = await axios.get(urlWithParams);

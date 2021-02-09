@@ -1,0 +1,36 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router-dom';
+import VideosGrid from '../../components/VideosGrid/VideosGrid.component';
+
+class FavoriteVideos extends Component {
+    state = {
+        videos: this.props.video.favoriteVideos,
+        loading: false,
+    };
+
+    render() {
+        const { videos, loading } = this.state;
+        return this.props.auth.id ? (
+            <div className="home-page-container">
+                <h1 className="text-6xl text-center	text-black dark:text-white uppercase mt-6 mb-4">
+                    Videos favoritos
+                </h1>
+                {!loading && <VideosGrid listType="full" videos={videos} />}
+            </div>
+        ) : (
+            <Redirect to="/" />
+        );
+    }
+}
+
+function mapStateToProps(state, ownProps) {
+    return {
+        video: state.video,
+        auth: state.auth,
+    };
+}
+
+const FavoriteVideosWithReduxStates = connect(mapStateToProps, null)(FavoriteVideos);
+
+export default withRouter(FavoriteVideosWithReduxStates);

@@ -4,20 +4,23 @@ import { Provider } from 'react-redux';
 
 import store from '../../redux/store/store';
 import Layout from '../Layout';
-import HomePage from '../../pages/Home';
 
-import '../../global.css';
+import HomePage from '../../pages/Home';
 import VideoDetail from '../../pages/VideoDetail';
+import FavoriteVideosPage from '../../pages/FavoriteVideos';
+
 import Navbar from '../Navbar';
 import NavigationMenu from '../NavigationMenu/NavigationMenu.component';
 import LoginModal from '../LoginModal/LoginModal.component';
 
+import '../../global.css';
+
 function App() {
     return (
         <Provider store={store}>
-            <Navbar />
-            <NavigationMenu />
             <BrowserRouter>
+                <Navbar />
+                <NavigationMenu />
                 <Layout>
                     <Switch>
                         <Route exact path="/">
@@ -25,6 +28,9 @@ function App() {
                         </Route>
                         <Route exact path="/video-detail/:id">
                             <VideoDetail />
+                        </Route>
+                        <Route exact path="/favorite-videos">
+                            <FavoriteVideosPage />
                         </Route>
                     </Switch>
                 </Layout>

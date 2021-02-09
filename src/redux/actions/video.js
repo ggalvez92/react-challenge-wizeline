@@ -6,3 +6,10 @@ export const videoSelected = (videoSelected) => ({
         videoSelected,
     },
 });
+
+export const addVideoFavorite = (videoSelected) => ({
+    type: types.addVideoFavorite,
+    payload: {
+        videoSelected,
+    },
+});

@@ -5,6 +5,7 @@ import {
     darkModeToggle,
     loginModalToggle,
 } from '../../redux/actions/template';
+import { logout } from '../../redux/actions/auth';
 import './Navbar.styles.css';
 
 class Navbar extends Component {
@@ -37,6 +38,13 @@ class Navbar extends Component {
         this.toggleDropdown();
     };
 
+    handleLogout = () => {
+        // this.props.loginModalToggle(!this.props.template.loginModalToggle);
+        // this.toggleDropdown();
+        this.props.logout();
+        this.toggleDropdown();
+    };
+
     componentDidMount() {
         this.props.navigationDrawerToggle(false);
         this.props.loginModalToggle(false);
@@ -45,6 +53,7 @@ class Navbar extends Component {
 
     render() {
         const { darkModeToggle: darkModeToggleValue } = this.props.template;
+        const { auth } = this.props;
         return (
             <nav className="navbar-container dark:bg-indigo-600">
                 <div className="max-w-10xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -162,12 +171,21 @@ class Navbar extends Component {
                                 aria-labelledby="user-menu"
                                 style={{ display: 'none' }}
                             >
-                                <button
-                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
-                                    onClick={this.handleLoginModalToggle}
-                                >
-                                    Login
-                                </button>
+                                {!auth.id ? (
+                                    <button
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+                                        onClick={this.handleLoginModalToggle}
+                                    >
+                                        Login
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+                                        onClick={this.handleLogout}
+                                    >
+                                        Logout
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -180,6 +198,7 @@ class Navbar extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         template: state.template,
+        auth: state.auth,
     };
 }
 
@@ -191,6 +210,7 @@ function mapDispatchToProps(dispatch) {
             dispatch(darkModeToggle(darkModeToggleValue)),
         loginModalToggle: (loginModalToggleValue) =>
             dispatch(loginModalToggle(loginModalToggleValue)),
+        logout: () => dispatch(logout()),
     };
 }
 
