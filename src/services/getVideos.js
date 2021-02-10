@@ -13,13 +13,18 @@ export const getVideos = async (searchText) => {
 
     const url = 'https://content-youtube.googleapis.com/youtube/v3/search';
     const urlWithParams = createUrlParams(url, params);
-    const { data: responseData } = await axios.get(urlWithParams);
-    const videos = responseData.items.map((item) => {
-        const currentId = item.id.videoId || item.id.channelId;
-        return {
-            id: currentId,
-            snippet: item.snippet,
-        };
-    });
-    return videos;
+    try {
+        const { data: responseData } = await axios.get(urlWithParams);
+
+        const videos = responseData.items.map((item) => {
+            const currentId = item.id.videoId || item.id.channelId;
+            return {
+                id: currentId,
+                snippet: item.snippet,
+            };
+        });
+        return videos;
+    } catch (error) {
+        return [];
+    }
 };
