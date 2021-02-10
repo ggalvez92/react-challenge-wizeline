@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { withRouter } from 'react-router-dom';
 import VideoItem from '../VideoItem';
 import './VideosGrid.styles.css';
 
-export default class VideosGrid extends Component {
+class VideosGrid extends Component {
     static propTypes = {
         videos: PropTypes.array.isRequired,
     };
@@ -22,7 +22,7 @@ export default class VideosGrid extends Component {
     }
 
     render() {
-        const { videos } = this.props;
+        const { videos, history } = this.props;
         return (
             <div className={this.getClassesContainer()}>
                 {videos.map((item, index) => {
@@ -31,6 +31,7 @@ export default class VideosGrid extends Component {
                             video={item}
                             key={index}
                             listType={this.props.listType}
+                            history={history}
                         />
                     );
                 })}
@@ -38,3 +39,5 @@ export default class VideosGrid extends Component {
         );
     }
 }
+
+export default withRouter(VideosGrid);

@@ -40,35 +40,33 @@ class VideoItem extends Component {
 
     render() {
         const { video } = this.state;
-        return (
-            video.id && (
-                <div
-                    className={this.getClassesByDiv('card-container')}
-                    onClick={() => this.goVideoDetailpage(video)}
-                >
-                    <figure className={this.getClassesByDiv('figure-thumbnail')}>
-                        <img
-                            src={video.snippet.thumbnails.high.url}
-                            alt={video.snippet.title}
-                            className="h-full w-full object-cover object-center"
-                        />
-                    </figure>
-                    <div className="card-information px-4 py-4 flex-grow-0 flex-shrink flex-basis-100">
-                        <div className="title mb-3">
-                            <span
-                                className="leading-5 text-lg text-black dark:text-white"
-                                dangerouslySetInnerHTML={{ __html: video.snippet.title }}
-                            ></span>
-                        </div>
-                        <div className={this.getClassesByDiv('description')}>
-                            <p className="leading-5 text-sm text-gray-400">
-                                {video.snippet.description}
-                            </p>
-                        </div>
+        return video && video.id ? (
+            <div
+                className={this.getClassesByDiv('card-container')}
+                onClick={() => this.goVideoDetailpage(video)}
+            >
+                <figure className={this.getClassesByDiv('figure-thumbnail')}>
+                    <img
+                        src={video.snippet.thumbnails.high.url}
+                        alt={video.snippet.title}
+                        className="h-full w-full object-cover object-center"
+                    />
+                </figure>
+                <div className="card-information px-4 py-4 flex-grow-0 flex-shrink flex-basis-100">
+                    <div className="title mb-3">
+                        <span
+                            className="leading-5 text-lg text-black dark:text-white"
+                            dangerouslySetInnerHTML={{ __html: video.snippet.title }}
+                        ></span>
+                    </div>
+                    <div className={this.getClassesByDiv('description')}>
+                        <p className="leading-5 text-sm text-gray-400">
+                            {video.snippet.description}
+                        </p>
                     </div>
                 </div>
-            )
-        );
+            </div>
+        ) : null;
     }
 }
 
@@ -80,4 +78,4 @@ function mapDispatchToProps(dispatch) {
 
 const VideoItemWithReduxStates = connect(null, mapDispatchToProps)(VideoItem);
 
-export default withRouter(VideoItemWithReduxStates);
+export default VideoItemWithReduxStates;
