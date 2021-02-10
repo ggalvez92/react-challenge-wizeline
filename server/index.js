@@ -8,6 +8,8 @@ import store from './store';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+const PORT = process.env.port || 3000;
+
 const fs = require('fs');
 
 const app = express();
@@ -37,6 +39,6 @@ app.get('/*', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('server started: http://localhost:3000');
 });

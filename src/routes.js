@@ -8,7 +8,7 @@ import FavoriteVideosPage from './pages/FavoriteVideos';
 const Routes = (props) => {
     return (
         <Switch>
-            <Route exact path="/" component={HomePage}></Route>
+            <Route path="/" component={HomePage}></Route>
             <Route path="/video-detail/:id" component={VideoDetailPage}></Route>
             <Route path="/favorite-videos" component={FavoriteVideosPage}></Route>
         </Switch>
